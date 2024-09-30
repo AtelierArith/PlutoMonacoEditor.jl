@@ -1,0 +1,8 @@
+name = "PlutoMonacoEditor"
+uuid = "5e943eae-10d2-4eb3-ad1e-58d3f2e9614f"
+authors = ["Satoshi Terasaki <terasakisatoshi.math@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+AbstractPlutoDingetjes = "6e696c72-6542-2067-7265-42206c756150"
+HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
