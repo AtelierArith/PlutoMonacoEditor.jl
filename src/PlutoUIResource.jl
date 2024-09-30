@@ -1,4 +1,3 @@
-
 """
     Resource(src::String, mime=mime_from_filename(src)[, html_attributes::Pair...])
 
@@ -92,4 +91,21 @@ function LocalResource(path::AbstractString, html_attributes::Pair...)
 	    )"
     return Resource(src, mime, html_attributes)
 	Resource(src, mime, html_attributes)
+end
+
+
+###
+# MIMES
+###
+
+"Attempt to find the MIME pair corresponding to the extension of a filename. Defaults to `text/plain`."
+function mime_fromfilename(filename; default::T=nothing, filename_maxlength=2000)::Union{MIME, T} where T
+	if length(filename) > filename_maxlength
+		default
+    else
+        MIMEs.mime_from_path(
+            URIs.URI(filename).path,
+            default
+        )
+	end
 end
