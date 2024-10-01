@@ -4,7 +4,6 @@ authors = ["Satoshi Terasaki <terasakisatoshi.math@gmail.com>"]
 version = "0.1.0"
 
 [deps]
-AbstractPlutoDingetjes = "6e696c72-6542-2067-7265-42206c756150"
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 MIMEs = "6c6e2e6c-3030-632d-7369-2d6c69616d65"
@@ -12,8 +11,8 @@ URIs = "5c2747f8-b7ea-4ff2-ba2e-563bfd36b1d4"
 
 [extras]
 Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 JET = "c3a54625-cd67-489e-a8e7-0a5a0ff4e31b"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Aqua", "Test", "JET"]
