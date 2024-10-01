@@ -1,6 +1,11 @@
-# PlutoMonacoEditor.jl
+# [PlutoMonacoEditor.jl](https://github.com/AtelierArith/PlutoMonacoEditor.jl)
 
-## Usage
+## Description
+
+[This repository](https://github.com/AtelierArith/PlutoMonacoEditor.jl) provides an editor for writing non-Julia source code on top of the Pluto Notebook. This editor is the Monaco Editor itself.
+If you want to write code on top of Pluto Notebook for non-Julia source code, try this repository.
+
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/531961f8-228a-4fbb-9ea7-2c82c94810ac">
 
 ## Python editor
 
