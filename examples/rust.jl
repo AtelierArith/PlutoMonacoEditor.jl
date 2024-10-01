@@ -32,9 +32,11 @@ To run this notebook, you need to install Rust compiler from [here](https://www.
 # ╔═╡ bf232d99-3001-4aac-afb7-1321c7407666
 begin
 	initCode = """
-	fn main(){
-		println!("Hello");
-	}
+fn main(){
+	println!("Hello🦀");
+	println!("Update me");
+	println!("Press Enter to update");
+}
 	"""
 	@bind rustcode MonacoEditor("rust", initCode)
 end
