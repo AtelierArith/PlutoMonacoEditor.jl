@@ -1,13 +1,14 @@
 module PlutoMonacoEditor
 
-using HypertextLiteral
 using Base64
+
+using HypertextLiteral
 using MIMEs
 using URIs
 
 include("PlutoUIResource.jl")
 
-function MonacoEditor(initCode, language)
+function MonacoEditor(language, initCode)
 	@htl """
 <span>
 	<style>
