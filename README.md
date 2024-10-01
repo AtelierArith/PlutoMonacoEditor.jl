@@ -2,7 +2,7 @@
 
 ## Description
 
-[This repository](https://github.com/AtelierArith/PlutoMonacoEditor.jl) provides an editor for writing non-Julia source code on top of the Pluto Notebook. This editor is the Monaco Editor itself.
+[This repository](https://github.com/AtelierArith/PlutoMonacoEditor.jl) provides an editor for writing non-Julia source code on top of the Pluto Notebook. This editor is the [Monaco Editor](https://github.com/microsoft/monaco-editor) itself.
 If you want to write code on top of Pluto Notebook for non-Julia source code, try this repository.
 
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/531961f8-228a-4fbb-9ea7-2c82c94810ac">
@@ -99,3 +99,13 @@ mktempdir() do d
 	end
 end
 ```
+
+## Appendix
+
+- [Why I created this package](https://htmlview.glitch.me/?https://gist.github.com/terasakisatoshi/d2e7397a1e88a4f0cb6dad41b20a7d09)
+
+> ❓ What is the relationship between VS Code and the Monaco Editor?
+
+The Monaco Editor is generated straight from VS Code's sources with some shims around services the code needs to make it run in a web browser outside of its home.
+
+https://github.com/microsoft/monaco-editor?tab=readme-ov-file#faq
