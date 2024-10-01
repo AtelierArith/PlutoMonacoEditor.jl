@@ -24,7 +24,7 @@ function MonacoEditor(language, initCode)
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.51.0/min/vs/loader.min.js"></script>
 
 	<!-- This LocalResource hack is required to avoid getting errors due to content parsing in MonacoEditorWrapper.js. -->
-	$(LocalResource(joinpath(pkgdir(@__MODULE__), "src", "MonacoEditorWrapper.js")))
+	$(LocalResource(joinpath(pkgdir(@__MODULE__)::String, "src", "MonacoEditorWrapper.js")))
 
 	<script>
 		const wrapper_span = currentScript.parentElement;
