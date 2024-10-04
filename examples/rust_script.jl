@@ -24,15 +24,17 @@ end
 
 # ╔═╡ 9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 md"""
-# Rust editor on Pluto Notebook
+# Rust Editor on Pluto Notebook
 
-To run this notebook, you need to install Rust compiler from [here](https://www.rust-lang.org/tools/install). You will get `rustc` and `cargo` command
+To run this notebook, you need to install the Rust compiler from [here](https://www.rust-lang.org/tools/install). This will install both `rustc` (the Rust compiler) and `cargo` (the Rust package manager).
+
+Then, install the `rust-script` package with:
 
 ```sh
 $ cargo install rust-script
 ```
 
-See [rust-script](https://github.com/fornwall/rust-script) for more information
+See [rust-script](https://github.com/fornwall/rust-script) for more information.
 
 """
 
