@@ -50,6 +50,7 @@ begin
 //! 
 //! [dependencies]
 //! ndarray = "0.16.1"
+//!	```
 //! 
 extern crate ndarray;
 use ndarray::arr2;
