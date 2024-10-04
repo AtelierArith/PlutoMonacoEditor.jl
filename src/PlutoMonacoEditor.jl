@@ -8,13 +8,13 @@ using URIs
 
 include("PlutoUIResource.jl")
 
-function MonacoEditor(language, initCode)
+function MonacoEditor(language, initCode; width=700, height=200)
 	@htl """
 <span>
 	<style>
         .pluto-monaco-editor {
-            width: 800px;
-            height: 200px;
+            width: $(width)px;
+            height: $(height)px;
             border: 1px solid #ddd;
         }
     </style>
