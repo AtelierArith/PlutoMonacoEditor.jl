@@ -20,13 +20,16 @@ begin
 	Pkg.activate(temp=true)
 	Pkg.develop(path=dirname(@__DIR__))
 	using PlutoMonacoEditor: MonacoEditor
+	using Deno_jll
 end
 
 # ╔═╡ 9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 md"""
 # TypeScript Editor on Pluto Notebook
 
-To run this notebook, you need to install Deno from [here](https://docs.deno.com/runtime/#install-deno).
+Here we use Deno as a TypeScript runtime.
+
+What is deno? ↓↓↓
 
 > Deno (/ˈdiːnoʊ/, pronounced dee-no) is an open source JavaScript, TypeScript, and WebAssembly runtime with secure defaults and a great developer experience. It's built on V8, Rust, and Tokio.
 >
@@ -35,7 +38,7 @@ To run this notebook, you need to install Deno from [here](https://docs.deno.com
 
 # ╔═╡ bf232d99-3001-4aac-afb7-1321c7407666
 begin
-	initCode = @raw_str"""
+	initCode = raw"""
 function greet(name: string): string {
   return `Hello, ${name}!`;
 }
@@ -48,15 +51,16 @@ end
 # ╔═╡ dce616d7-fdfe-4854-919d-420603ebc875
 mktempdir() do d
 	sourcepath = joinpath(d, "main.ts")
+	tsruntime = `$(deno()) run`
 	open(sourcepath, "w") do io
 		write(io, sourcecode)
 	end	
 	executablepath = joinpath(d, "main")
-	run(`deno $(sourcepath)`)
+	run(`$(tsruntime) $(sourcepath)`)
 end
 
 # ╔═╡ Cell order:
 # ╟─9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 # ╠═07ebdbbe-49bb-4d18-9f2b-14f98d137548
 # ╟─bf232d99-3001-4aac-afb7-1321c7407666
-# ╟─dce616d7-fdfe-4854-919d-420603ebc875
+# ╠═dce616d7-fdfe-4854-919d-420603ebc875
