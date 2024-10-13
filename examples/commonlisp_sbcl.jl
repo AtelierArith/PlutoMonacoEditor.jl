@@ -24,7 +24,7 @@ end
 
 # ╔═╡ 9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 md"""
-# Rust editor on Pluto Notebook
+# Common Lisp editor on Pluto Notebook
 
 To run this notebook, you need to install `sbcl` command. [SBCL](https://www.sbcl.org/) is a popular [Common Lisp](https://lisp-lang.org/) implementation.
 """
