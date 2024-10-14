@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.46
+# v0.19.47
 
 using Markdown
 using InteractiveUtils
@@ -44,30 +44,19 @@ begin
 //! Dependencies can be specified in the script file itself as follows:
 //!
 //! ```cargo
-//! name = "main"
-//! version = "0.1.0"
-//! edition = "2021"
-//! 
 //! [dependencies]
-//! ndarray = "0.16.1"
-//!	```
-//! 
-extern crate ndarray;
-use ndarray::arr2;
+//! rand = "0.8.0"
+//! ```
+
+use rand::prelude::*;
+
 fn main() {
-    let a = arr2(&[[1, 2, 3],
-                   [4, 5, 6]]);
-    let b = arr2(&[[6, 5, 4],
-                   [3, 2, 1]]);
-    let sum = &a + &b;
-    println!("{}", a);
-    println!("+");
-    println!("{}", b);
-    println!("=");
-    println!("{}", sum);
+    let x: u64 = random();
+    println!("A random number: {}", x);
 }
+
 	"""
-	@bind rustcode MonacoEditor("rust", initCode, width=700, height=500)
+	@bind rustcode MonacoEditor("rust", initCode, width=700, height=300)
 end
 
 # ╔═╡ dce616d7-fdfe-4854-919d-420603ebc875
@@ -76,16 +65,11 @@ mktempdir() do d
 	open(sourcepath, "w") do io
 		write(io, rustcode)
 	end	
-	executablepath = joinpath(d, "main")
-	try
-		run(`rust-script $(sourcepath)`)
-	catch 
-	end
-	nothing
+	run(`rust-script $(sourcepath)`)
 end
 
 # ╔═╡ Cell order:
 # ╟─9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 # ╠═07ebdbbe-49bb-4d18-9f2b-14f98d137548
 # ╟─bf232d99-3001-4aac-afb7-1321c7407666
-# ╟─dce616d7-fdfe-4854-919d-420603ebc875
+# ╠═dce616d7-fdfe-4854-919d-420603ebc875

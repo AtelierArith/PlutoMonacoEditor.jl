@@ -19,6 +19,8 @@ begin
 	using Pkg
 	Pkg.activate(temp=true)
 	Pkg.develop(path=dirname(@__DIR__))
+	Pkg.add("Deno_jll")
+	
 	using PlutoMonacoEditor: MonacoEditor
 	using Deno_jll
 end
