@@ -2,7 +2,7 @@
 
 ## Description
 
-[This repository](https://github.com/AtelierArith/PlutoMonacoEditor.jl) provides an editor for writing non-Julia source code on top of the Pluto Notebook. This editor is the [Monaco Editor](https://github.com/microsoft/monaco-editor) itself.
+[This repository](https://github.com/AtelierArith/PlutoMonacoEditor.jl) provides an editor for writing non-Julia source code that can be used with `@bind` in [Pluto.jl](https://plutojl.org/). This editor is the [Monaco Editor](https://github.com/microsoft/monaco-editor) itself.
 If you want to write code on top of Pluto Notebook for non-Julia source code, try this repository.
 
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/531961f8-228a-4fbb-9ea7-2c82c94810ac">
@@ -42,9 +42,7 @@ As an application, to compile the source code `pythoncode`, Add the following co
 ```julia
 begin
 	function loadpythonmodule(pythoncode)
-		open("mylib.py", "w") do io
-			print(io, pythoncode)
-		end
+		write("mylib.py", pythoncode)
 		importlib = pyimport("importlib")
 		pyimport("sys")."path".append(@__DIR__)
 		mylib = pyimport("mylib")
@@ -88,9 +86,7 @@ As an application, to compile the source code `rustcode`, Add the following code
 ```julia
 mktempdir() do d
 	sourcepath = joinpath(d, "main.rs")
-	open(sourcepath, "w") do io
-		write(io, rustcode)
-	end	
+	write(sourcepath, rustcode)
 	executablepath = joinpath(d, "main")
 	try
 		run(`rustc $(sourcepath) -o $(executablepath)`)
