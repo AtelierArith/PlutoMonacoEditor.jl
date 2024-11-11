@@ -45,10 +45,10 @@ end
 begin
 	initCode = """
 	import numpy as np
-	def myapi():
+	def my_python_api():
 		return np.random.random((3, 3))
 	"""
-	@bind pythoncode MonacoEditor("python", initCode)
+	@bind sourcecode MonacoEditor("python", initCode)
 end
 
 # ╔═╡ 31e9189a-de9d-472d-8f7d-9d2935fbffb4
@@ -58,10 +58,8 @@ This binds Julia variable `pythoncode` and an instance of Monaco Editor. If one 
 
 # ╔═╡ 3af14431-6464-458e-a3d6-9a268b9f9349
 begin
-	function loadpythonmodule(pythoncode)
-		open("mylib.py", "w") do io
-			print(io, pythoncode)
-		end
+	function loadpythonmodule(sourcecode)
+		write("mylib.py", sourcecode)
 		importlib = pyimport("importlib")
 		pyimport("sys")."path".append(@__DIR__)
 		mylib = pyimport("mylib")
@@ -69,11 +67,15 @@ begin
 		mylib
 	end
 	
-	mylib = loadpythonmodule(pythoncode)
+	mylib = loadpythonmodule(sourcecode)
+	nothing
 end
 
 # ╔═╡ 00014af8-c64b-4aad-b478-3b9ec36810da
-println(mylib.myapi())
+begin
+	np_arr = mylib.my_python_api()
+	@assert pyconvert(Bool, np_arr.shape == pytuple((3, 3)))
+end
 
 # ╔═╡ Cell order:
 # ╟─9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
