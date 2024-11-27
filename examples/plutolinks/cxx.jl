@@ -31,24 +31,18 @@ md"""
 To run this notebook, you need to install `g++` command, a C++ compiler.
 """
 
-# ╔═╡ 4428e48e-d18c-4d8d-ae2e-39379fde6216
-md"""
-The PlutoLinks.jl package provides `@use_file` macro. This watches a file and reload the content when it changes. Try adding the following code in your Pluto notebook:
-
-```julia
+# ╔═╡ 7f6f04ef-b875-45d3-8e25-fad4a1e4de90
 begin
+	#=
+	The PlutoLinks.jl package provides `@use_file` macro. This watches a file and reload the content when it changes. Try adding the following code in your Pluto notebook:
+	=#
 	targetfile = "main.cpp"
-	initCode = isfile(targetfile) ? (@use_file targetfile) : "int main(){}"
-	editor = @bind sourcecode MonacoEditor("cpp", initCode)
+	initCode = @use_file targetfile
+	nothing
 end
-```
-"""
 
-# ╔═╡ bf232d99-3001-4aac-afb7-1321c7407666
+# ╔═╡ 4428e48e-d18c-4d8d-ae2e-39379fde6216
 begin
-	targetfile = "main.cpp"
-	file = @use_file targetfile
-	initCode = isfile(targetfile) ? file : "int main(){}"
 	editor = @bind sourcecode MonacoEditor("cpp", initCode)
 end
 
@@ -90,7 +84,7 @@ end
 # ╔═╡ Cell order:
 # ╟─9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 # ╠═07ebdbbe-49bb-4d18-9f2b-14f98d137548
-# ╟─4428e48e-d18c-4d8d-ae2e-39379fde6216
-# ╟─bf232d99-3001-4aac-afb7-1321c7407666
+# ╠═7f6f04ef-b875-45d3-8e25-fad4a1e4de90
+# ╠═4428e48e-d18c-4d8d-ae2e-39379fde6216
 # ╟─dce616d7-fdfe-4854-919d-420603ebc875
 # ╟─7b8519b8-9236-4564-93a8-41d08097291a
