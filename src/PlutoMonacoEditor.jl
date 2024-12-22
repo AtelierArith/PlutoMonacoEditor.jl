@@ -4,13 +4,13 @@ using Base64: base64encode
 
 using HypertextLiteral
 
-function MonacoEditor(language, initCode; width=700, height=200, theme="vs-dark")
+function MonacoEditor(language::AbstractString, initCode::AbstractString; width::Int=700, height::Int=200, theme::AbstractString="vs-dark")
 	@htl """
 <div>
 	<style>
         .pluto-monaco-editor {
-            width: 800px;
-            height: 200px;
+            width: $(width)px;
+            height: $(height)px;
             border: 1px solid #ddd;
         }
     </style>
