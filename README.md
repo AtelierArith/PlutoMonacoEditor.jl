@@ -20,6 +20,7 @@ Prepare the following code to set up an instance of Monaco Editor.
 
 ```julia
 begin
+	using PlutoMonacoEditor: MonacoEditor
 	using CondaPkg
 	CondaPkg.add_pip("numpy")
 	using PythonCall
@@ -51,7 +52,7 @@ begin
 		importlib.reload(mylib)
 		mylib
 	end
-	
+
 	mylib = loadpythonmodule(pythoncode)
 end
 ```
@@ -73,6 +74,7 @@ Prepare the following code to set up an instance of Monaco Editor.
 
 ```julia
 begin
+	using PlutoMonacoEditor: MonacoEditor
 	initCode = """
 	fn main(){
 		println!("Hello");
@@ -93,7 +95,7 @@ mktempdir() do d
 	try
 		run(`rustc $(sourcepath) -o $(executablepath)`)
 		println(readchomp(`$(executablepath)`))
-	catch 
+	catch
 	end
 end
 ```
@@ -103,7 +105,7 @@ end
 - [Why I created this package](https://htmlview.glitch.me/?https://gist.github.com/terasakisatoshi/d2e7397a1e88a4f0cb6dad41b20a7d09)
 
 > ❓ What is the relationship between VS Code and the Monaco Editor?
-
-The Monaco Editor is generated straight from VS Code's sources with some shims around services the code needs to make it run in a web browser outside of its home.
+>
+>The Monaco Editor is generated straight from VS Code's sources with some shims around services the code needs to make it run in a web browser outside of its home.
 
 https://github.com/microsoft/monaco-editor?tab=readme-ov-file#faq
