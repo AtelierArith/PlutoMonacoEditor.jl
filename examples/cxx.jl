@@ -18,10 +18,10 @@ end
 
 # ╔═╡ 07ebdbbe-49bb-4d18-9f2b-14f98d137548
 begin
-	using Pkg
-	Pkg.activate(temp=true)
-	Pkg.develop(path=dirname(@__DIR__))
-	using PlutoMonacoEditor: MonacoEditor
+    using Pkg
+    Pkg.activate(temp = true)
+    Pkg.develop(path = dirname(@__DIR__))
+    using PlutoMonacoEditor: MonacoEditor
 end
 
 # ╔═╡ 9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
@@ -33,28 +33,28 @@ To run this notebook, you need to install `g++` command, a C++ compiler.
 
 # ╔═╡ bf232d99-3001-4aac-afb7-1321c7407666
 begin
-	initCode = """
-#include<iostream>
-	
-int main(){
-	std::cout << "Hello C++" << std::endl;
-}
-	"""
-	@bind rustcode MonacoEditor("cpp", initCode)
+    initCode = """
+   #include<iostream>
+   	
+   int main(){
+   	std::cout << "Hello C++" << std::endl;
+   }
+   	"""
+    @bind rustcode MonacoEditor("cpp", initCode)
 end
 
 # ╔═╡ dce616d7-fdfe-4854-919d-420603ebc875
 mktempdir() do d
-	sourcepath = joinpath(d, "main.cxx")
-	open(sourcepath, "w") do io
-		write(io, rustcode)
-	end	
-	executablepath = joinpath(d, "main")
-	try
-		run(`g++ -O2 $(sourcepath) -o $(executablepath)`)
-		println(readchomp(`$(executablepath)`))
-	catch 
-	end
+    sourcepath = joinpath(d, "main.cxx")
+    open(sourcepath, "w") do io
+        write(io, rustcode)
+    end
+    executablepath = joinpath(d, "main")
+    try
+        run(`g++ -O2 $(sourcepath) -o $(executablepath)`)
+        println(readchomp(`$(executablepath)`))
+    catch
+    end
 end
 
 # ╔═╡ Cell order:

@@ -18,9 +18,9 @@ end
 
 # ╔═╡ 71271f51-f697-4647-bad4-55116e352168
 begin
-	using Base64: base64encode
-	using Deno_jll
-	using HypertextLiteral: @htl
+    using Base64: base64encode
+    using Deno_jll
+    using HypertextLiteral: @htl
 end
 
 # ╔═╡ 77368643-d7b4-48f4-a200-4910b1e9847d
@@ -36,6 +36,9 @@ function greet(name: string): string{
 }
 console.log(greet("Update me"));
 """
+
+# ╔═╡ 78c4c57d-6132-4db8-adef-a298599e8c85
+language = "typescript"
 
 # ╔═╡ 9f65f836-bf39-11ef-304d-d3ae5cb4b441
 @bind sourcecode @htl """
@@ -63,7 +66,8 @@ console.log(greet("Update me"));
  	
 	const monEditor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
 		value: decodeBase64($(base64encode(defaultcode))),
-		language: 'typescript'
+		language: $(language),
+		theme: 'vs-dark'
 	});
 
 	const pE = currentScript.parentElement;
@@ -87,10 +91,10 @@ println(sourcecode)
 
 # ╔═╡ b75424fe-20ee-4a32-bdec-bd688890d6fa
 mktempdir() do d
-	script = joinpath(d, "main.ts")
-	write(script, sourcecode)
-	deno = Deno_jll.deno()
-	run(`$(deno) run $(script)`);
+    script = joinpath(d, "main.ts")
+    write(script, sourcecode)
+    deno = Deno_jll.deno()
+    run(`$(deno) run $(script)`)
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -178,6 +182,7 @@ version = "1.11.0"
 # ╟─77368643-d7b4-48f4-a200-4910b1e9847d
 # ╠═71271f51-f697-4647-bad4-55116e352168
 # ╠═a39253f7-2f48-4281-bbf4-981bc027fc44
+# ╠═78c4c57d-6132-4db8-adef-a298599e8c85
 # ╠═9f65f836-bf39-11ef-304d-d3ae5cb4b441
 # ╠═d10f79f7-13ec-4391-8a11-11d80662c570
 # ╠═b75424fe-20ee-4a32-bdec-bd688890d6fa
