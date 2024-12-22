@@ -1,5 +1,7 @@
 # [PlutoMonacoEditor.jl](https://github.com/AtelierArith/PlutoMonacoEditor.jl)
 
+[![CI](https://github.com/AtelierArith/PlutoMonacoEditor.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/AtelierArith/PlutoMonacoEditor.jl/actions/workflows/CI.yml)
+
 ## Description
 
 [This repository](https://github.com/AtelierArith/PlutoMonacoEditor.jl) provides an editor for writing non-Julia source code that can be used with `@bind` in [Pluto.jl](https://plutojl.org/). This editor is the [Monaco Editor](https://github.com/microsoft/monaco-editor) itself.
