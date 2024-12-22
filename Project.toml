@@ -12,7 +12,6 @@ Aqua = "0.8.9"
 Base64 = "1"
 HypertextLiteral = "0.9.5"
 JET = "0.9.12"
-Pluto = "0.20.4"
 Test = "1"
 julia = "1"
 
