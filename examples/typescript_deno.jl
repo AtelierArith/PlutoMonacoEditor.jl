@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.3
+# v0.20.4
 
 using Markdown
 using InteractiveUtils
@@ -54,13 +54,13 @@ end
 
 # ╔═╡ dce616d7-fdfe-4854-919d-420603ebc875
 mktempdir() do d
-    sourcepath = joinpath(d, "main.ts")
-    tsruntime = `$(deno()) run`
-    open(sourcepath, "w") do io
-        write(io, sourcecode)
-    end
-    executablepath = joinpath(d, "main")
-    run(`$(tsruntime) $(sourcepath)`)
+	try
+		sourcepath = joinpath(d, "main.ts")
+	    tsruntime = `$(deno()) run`
+	    write(sourcepath, sourcecode)
+	    run(`$(tsruntime) $(sourcepath)`)
+	catch
+	end
 end
 
 # ╔═╡ Cell order:

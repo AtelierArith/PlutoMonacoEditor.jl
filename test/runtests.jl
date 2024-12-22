@@ -6,7 +6,7 @@ using JET
 using PlutoMonacoEditor
 
 @testset "Code quality (Aqua.jl)" begin
-    Aqua.test_all(PlutoMonacoEditor; deps_compat = false)
+    Aqua.test_all(PlutoMonacoEditor)
 end
 
 v = VERSION
