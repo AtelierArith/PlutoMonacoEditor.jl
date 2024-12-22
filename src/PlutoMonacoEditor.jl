@@ -4,6 +4,8 @@ using Base64: base64encode
 
 using HypertextLiteral
 
+export MonacoEditor
+
 function MonacoEditor(
     language::AbstractString,
     initCode::AbstractString;
