@@ -6,8 +6,6 @@ version = "0.1.1"
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
-MIMEs = "6c6e2e6c-3030-632d-7369-2d6c69616d65"
-URIs = "5c2747f8-b7ea-4ff2-ba2e-563bfd36b1d4"
 
 [extras]
 Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
