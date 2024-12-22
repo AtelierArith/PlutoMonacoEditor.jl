@@ -1,7 +1,7 @@
 name = "PlutoMonacoEditor"
 uuid = "5e943eae-10d2-4eb3-ad1e-58d3f2e9614f"
 authors = ["Satoshi Terasaki <terasakisatoshi.math@gmail.com>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
