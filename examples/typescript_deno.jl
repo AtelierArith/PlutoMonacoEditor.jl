@@ -71,8 +71,39 @@ let
     end
 end
 
+# ╔═╡ 431a424b-c2bd-4083-89bc-29cee73c3dec
+md"""
+Note that the following code runs behind the scenes
+
+```julia
+let
+    shouldrun = false
+    if !ismissing(sourcecode)
+        if initCode != sourcecode
+            # Update file
+            write(targetfile, sourcecode)
+            # If updated, we should run code
+            shouldrun = true
+        end
+        if shouldrun
+            mktempdir() do d
+                write(joinpath(d, targetfile), sourcecode)
+				deno = Deno_jll.deno()
+                try
+                    run(`$(deno) run $(joinpath(d, targetfile))`)
+                catch e
+                    e isa ProcessFailedException || rethrow(e)
+                end
+            end
+        end
+    end
+end
+```
+"""
+
 # ╔═╡ Cell order:
 # ╟─9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 # ╠═07ebdbbe-49bb-4d18-9f2b-14f98d137548
 # ╠═bf232d99-3001-4aac-afb7-1321c7407666
-# ╠═dce616d7-fdfe-4854-919d-420603ebc875
+# ╟─dce616d7-fdfe-4854-919d-420603ebc875
+# ╟─431a424b-c2bd-4083-89bc-29cee73c3dec
