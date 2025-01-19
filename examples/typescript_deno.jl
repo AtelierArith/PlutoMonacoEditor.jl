@@ -42,29 +42,37 @@ What is deno? ↓↓↓
 
 # ╔═╡ bf232d99-3001-4aac-afb7-1321c7407666
 begin
-    initCode = raw"""
-   function greet(name: string): string {
-     return `Hello, ${name}!`;
-   }
-
-   console.log(greet("world"));
-   """
-    @bind sourcecode MonacoEditor("typescript", initCode, width = 700, height = 200)
+    targetfile = joinpath(dirname(first(split(@__FILE__, ".jl#==#"))), "main.ts")
+    initCode = join(readlines(targetfile), '\n')
+    @bind sourcecode MonacoEditor("typescript", initCode, height = 200)
 end
 
 # ╔═╡ dce616d7-fdfe-4854-919d-420603ebc875
-mktempdir() do d
-	try
-		sourcepath = joinpath(d, "main.ts")
-	    tsruntime = `$(deno()) run`
-	    write(sourcepath, sourcecode)
-	    run(`$(tsruntime) $(sourcepath)`)
-	catch
-	end
+let
+    shouldrun = false
+    if !ismissing(sourcecode)
+        if initCode != sourcecode
+            # Update file
+            write(targetfile, sourcecode)
+            # If updated, we should run code
+            shouldrun = true
+        end
+        if shouldrun
+            mktempdir() do d
+                write(joinpath(d, targetfile), sourcecode)
+				deno = Deno_jll.deno()
+                try
+                    run(`$(deno) run $(joinpath(d, targetfile))`)
+                catch e
+                    e isa ProcessFailedException || rethrow(e)
+                end
+            end
+        end
+    end
 end
 
 # ╔═╡ Cell order:
 # ╟─9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 # ╠═07ebdbbe-49bb-4d18-9f2b-14f98d137548
-# ╟─bf232d99-3001-4aac-afb7-1321c7407666
+# ╠═bf232d99-3001-4aac-afb7-1321c7407666
 # ╠═dce616d7-fdfe-4854-919d-420603ebc875
