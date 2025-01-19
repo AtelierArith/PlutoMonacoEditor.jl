@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.3
+# v0.20.4
 
 using Markdown
 using InteractiveUtils
@@ -33,32 +33,70 @@ To run this notebook, you need to install Rust compiler from [here](https://www.
 
 # ╔═╡ bf232d99-3001-4aac-afb7-1321c7407666
 begin
-    initCode = """
-   fn main(){
-   	println!("Hello🦀");
-   	println!("Update me");
-   	println!("Press Enter to update");
-   }
-   	"""
-    @bind rustcode MonacoEditor("rust", initCode)
+    targetfile = joinpath(dirname(first(split(@__FILE__, ".jl#==#"))), "main.rs")
+    initCode = join(readlines(targetfile), '\n')
+    @bind sourcecode MonacoEditor("rust", initCode, height = 200)
 end
 
 # ╔═╡ dce616d7-fdfe-4854-919d-420603ebc875
-mktempdir() do d
-    sourcepath = joinpath(d, "main.rs")
-    open(sourcepath, "w") do io
-        write(io, rustcode)
-    end
-    executablepath = joinpath(d, "main")
-    try
-        run(`rustc $(sourcepath) -o $(executablepath)`)
-        println(readchomp(`$(executablepath)`))
-    catch
+let
+    shouldrun = false
+    if !ismissing(sourcecode)
+        if initCode != sourcecode
+            # Update file
+            write(targetfile, sourcecode)
+            # If updated, we should run code
+            shouldrun = true
+        end
+        if shouldrun
+            mktempdir() do d
+                write(joinpath(d, targetfile), sourcecode)
+                exec = joinpath(d, "a.out")
+                try
+                    run(`rustc $(joinpath(d, targetfile)) -o $(exec)`)
+                    run(`$(exec)`)
+                catch e
+                    e isa ProcessFailedException || rethrow(e)
+                end
+            end
+        end
     end
 end
+
+# ╔═╡ b223077c-8a38-416b-998d-c6fdb274512b
+md"""
+Note that the following code runs behind the scenes.
+
+```julia
+let
+    shouldrun = false
+    if !ismissing(sourcecode)
+        if initCode != sourcecode
+            # Update file
+            write(targetfile, sourcecode)
+            # If updated, we should run code
+            shouldrun = true
+        end
+        if shouldrun
+            mktempdir() do d
+                write(joinpath(d, targetfile), sourcecode)
+                exec = joinpath(d, "a.out")
+                try
+                    run(`rustc $(joinpath(d, targetfile)) -o $(exec)`)
+                    run(`$(exec)`)
+                catch e
+                    e isa ProcessFailedException || rethrow(e)
+                end
+            end
+        end
+    end
+end
+```
+"""
 
 # ╔═╡ Cell order:
 # ╟─9aa40f8c-a955-47a3-8e6d-4ac54d1dc330
 # ╠═07ebdbbe-49bb-4d18-9f2b-14f98d137548
 # ╟─bf232d99-3001-4aac-afb7-1321c7407666
 # ╟─dce616d7-fdfe-4854-919d-420603ebc875
+# ╟─b223077c-8a38-416b-998d-c6fdb274512b
