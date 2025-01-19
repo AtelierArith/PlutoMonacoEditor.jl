@@ -10,4 +10,5 @@ use rand::prelude::*;
 fn main() {
     let x: u64 = random();
     println!("A random number: {}", x);
+    
 }
