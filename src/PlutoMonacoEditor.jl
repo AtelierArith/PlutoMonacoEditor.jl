@@ -25,19 +25,10 @@ function MonacoEditor(
    	<div id='monaco-editor-container' class='pluto-monaco-editor'></div>
 
    <script>
-   	function decodeBase64(base64String) {
-   	    const prefix = "data:text/plain;base64,";
-   	    if (base64String.startsWith(prefix)) {
-   	        base64String = base64String.slice(prefix.length);
-   	    }
-   	    const decodedData = atob(base64String);
-   	    return decodedData;
-   	}
-
    	const monaco = await import('https://cdn.jsdelivr.net/npm/monaco-editor@0.52.0/+esm');
     	
    	const monEditor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
-   		value: decodeBase64($(base64encode(initCode))),
+   		value: $(initCode),
    		language: $(language),
    		theme: $(theme)
    	});
