@@ -60,7 +60,6 @@ let
         if shouldrun
             mktempdir() do d
                 write(joinpath(d, targetfile), sourcecode)
-                exec = joinpath(d, "a.out")
                 try
                     run(`rust-script $(joinpath(d, targetfile))`)
                 catch e
@@ -87,7 +86,6 @@ let
         if shouldrun
             mktempdir() do d
                 write(joinpath(d, targetfile), sourcecode)
-                exec = joinpath(d, "a.out")
                 try
                     run(`rust-script $(joinpath(d, targetfile))`)
                 catch e
