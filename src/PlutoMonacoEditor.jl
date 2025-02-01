@@ -26,8 +26,8 @@ function MonacoEditor(
 
    <script>
    	const monaco = await import('https://cdn.jsdelivr.net/npm/monaco-editor@0.52.0/+esm');
-    	
-   	const monEditor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
+    const wrapper_span = currentScript.parentElement
+   	const monEditor = monaco.editor.create(wrapper_span.querySelector('div#monaco-editor-container'), {
    		value: $(initCode),
    		language: $(language),
    		theme: $(theme)
