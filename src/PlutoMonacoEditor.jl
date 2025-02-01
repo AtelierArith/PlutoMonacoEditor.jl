@@ -14,7 +14,7 @@ function MonacoEditor(
     theme::AbstractString = "vs-dark",
 )
     @htl """
-   <div>
+   <span>
    	<style>
            .pluto-monaco-editor {
                width: $(width)px;
@@ -46,7 +46,7 @@ function MonacoEditor(
    	
    	update_bond();
    </script>
-   </div>
+   </span>
    """
 end
 
