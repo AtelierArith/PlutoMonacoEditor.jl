@@ -33,13 +33,12 @@ function MonacoEditor(
    		theme: $(theme)
    	});
 
-   	const pE = currentScript.parentElement;
    	function update_bond() {
-   		pE.value = monEditor.getValue();
-   		pE.dispatchEvent(new CustomEvent("update"));
+   		wrapper_span.value = monEditor.getValue();
+   		wrapper_span.dispatchEvent(new CustomEvent("update"));
    	}
    	
-   	const myEditor = pE.querySelector("#monaco-editor-container");
+   	const myEditor = wrapper_span.querySelector("#monaco-editor-container");
    	myEditor.addEventListener("input", e=>{
    		update_bond();
    	})
