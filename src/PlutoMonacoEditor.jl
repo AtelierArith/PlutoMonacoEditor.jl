@@ -14,38 +14,31 @@ function MonacoEditor(
     theme::AbstractString = "vs-dark",
 )
     @htl """
-   <span>
-   	<style>
-           .pluto-monaco-editor {
-               width: $(width)px;
-               height: $(height)px;
-               border: 1px solid #ddd;
-           }
-       </style>
-   	<div id='monaco-editor-container' class='pluto-monaco-editor'></div>
+    <span>
+    <div id='monaco-editor-container' style="width: $(width)px; height: $(height)px; border: 1px solid #ddd;"></div>
 
-   <script>
-   	const monaco = await import('https://cdn.jsdelivr.net/npm/monaco-editor@0.52.0/+esm');
-    const wrapper_span = currentScript.parentElement
-   	const monEditor = monaco.editor.create(wrapper_span.querySelector('div#monaco-editor-container'), {
-   		value: $(initCode),
-   		language: $(language),
-   		theme: $(theme)
-   	});
+    <script>
+        const monaco = await import('https://cdn.jsdelivr.net/npm/monaco-editor@0.52.0/+esm');
+        const wrapper_span = currentScript.parentElement
+        const monEditor = monaco.editor.create(wrapper_span.querySelector('div#monaco-editor-container'), {
+            value: $(initCode),
+            language: $(language),
+            theme: $(theme)
+        });
 
-   	function update_bond() {
-   		wrapper_span.value = monEditor.getValue();
-   		wrapper_span.dispatchEvent(new CustomEvent("update"));
-   	}
-   	
-   	const myEditor = wrapper_span.querySelector("#monaco-editor-container");
-   	myEditor.addEventListener("input", e=>{
-   		update_bond();
-   	})
-   	
-   	update_bond();
-   </script>
-   </span>
+        function update_bond() {
+            wrapper_span.value = monEditor.getValue();
+            wrapper_span.dispatchEvent(new CustomEvent("update"));
+        }
+
+        const editorContainer = wrapper_span.querySelector("#monaco-editor-container");
+        editorContainer.addEventListener("input", e=>{
+            update_bond();
+        })
+
+        update_bond();
+    </script>
+    </span>
    """
 end
 
