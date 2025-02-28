@@ -31,8 +31,8 @@ function MonacoEditor(
             wrapper_span.dispatchEvent(new CustomEvent("update"));
         }
 
-        const myEditor = wrapper_span.querySelector("#monaco-editor-container");
-        myEditor.addEventListener("input", e=>{
+        const editorContainer = wrapper_span.querySelector("#monaco-editor-container");
+        editorContainer.addEventListener("input", e=>{
             update_bond();
         })
 
